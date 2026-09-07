@@ -1,0 +1,19 @@
+<h1>Log In</h1>
+
+<%= form_with(model: @user, url: login_path, method: :post) do |form| %>
+  <div>
+    <%= form.label :Email %>
+    <%= form.email_field :email, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :Password %>
+    <%= form.password_field :password_digest, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Log In"%>
+  </div>
+
+  <div> Don't have an account? <%= link_to "Sign Up", "users#new" %></div>
+<% end %>

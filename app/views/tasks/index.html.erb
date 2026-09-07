@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Tasks" %>
+
+
+
+<h4>
+<%= link_to "Add task", new_task_path, class: "add-task-link"%>
+</h4>
+
+<h1>Tasks</h1>
+
+
+<div id="tasks">
+  <% @tasks.each do |task| %>
+    <%= render task %>
+    
+  <% end %>
+</div>
+
+<%= link_to "Logout", logout_path, class: "Logout-link" %>
+

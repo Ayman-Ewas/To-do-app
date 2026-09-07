@@ -1,0 +1,37 @@
+<!-- Heading -->
+<h1>Sign Up</h1>
+
+<!-- model linking -->
+<%= form_with(model: @user, url: signup_path) do |form| %>
+  
+  <!-- username form -->
+  <div style="margin: 10px 0;">
+    <%= form.label :username %>
+    <%= form.text_field :username, required: true, placeholder: "Enter your username" %>
+  </div>
+
+    <!-- email form -->
+  <div style="margin: 10px 0;">
+    <%= form.label :email %>
+    <%= form.email_field :email, required: true, placeholder: "email@example.com" %>
+  </div>
+  
+    <!-- password form -->
+  <div style="margin: 10px 0;">
+    <%= form.label :password %>
+    <%= form.password_field :password_digest, required: true %>
+  </div>
+  
+    <!-- password confirmation form -->
+  <div style="margin: 10px 0;">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation, required: true %>
+  </div>
+
+    <!-- submit button -->
+  <%= form.submit "Create Account" %>
+
+
+<% end %>
+
+<p>"Already have an account? <%= link_to "Log In", login_path %></p>
