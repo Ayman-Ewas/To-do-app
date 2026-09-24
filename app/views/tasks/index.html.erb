@@ -13,10 +13,10 @@
 
 <div id="tasks">
   <% @tasks.each do |task| %>
+    <% if task.user_id == @current_user %>
     <%= render task %>
-    
+    <% end %>
   <% end %>
 </div>
 
 <%= link_to "Logout", logout_path, class: "Logout-link" %>
-

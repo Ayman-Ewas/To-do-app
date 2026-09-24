@@ -1,6 +1,6 @@
 <h1>Log In</h1>
 
-<%= form_with(model: @user, url: login_path, method: :post) do |form| %>
+<%= form_for(:user, url: login_path, method: :post) do |form| %>
   <div>
     <%= form.label :Email %>
     <%= form.email_field :email, required: true %>
@@ -8,12 +8,12 @@
 
   <div>
     <%= form.label :Password %>
-    <%= form.password_field :password_digest, required: true %>
+    <%= form.password_field :password, required: true %>
   </div>
 
   <div>
     <%= form.submit "Log In"%>
   </div>
 
-  <div> Don't have an account? <%= link_to "Sign Up", "users#new" %></div>
+  <div> Don't have an account? <%= link_to "Sign Up", signup_path%></div>
 <% end %>

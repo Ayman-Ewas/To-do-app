@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :require_login
+  before_action :set_task, only: %i[ show edit update destroy update_status]
 
   # GET /tasks or /tasks.json
   def index
@@ -23,8 +24,8 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @task = Task.new(task_params)
     @current_user = User.find(session[:user_id]) if session[:user_id]
+    @task = Task.new(task_params.merge(user_id: @current_user.id))
     respond_to do |format|
 
       if @task.save
@@ -68,8 +69,9 @@ class TasksController < ApplicationController
   end
 
   def update_status
-    
-    @task.toggle_status if @task.present?
+    @task.toggle_status
+
+        
   end
     
 

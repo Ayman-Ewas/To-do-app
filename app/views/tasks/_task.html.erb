@@ -6,15 +6,15 @@
     </strong>
 
     <% if task.status == "pending" %>
-    <span style="color: orange;"><%= task.status%></span>
+    <span style="color: orange;"><%= task.status %></span>
 
     <% elsif task.status == "in_progress" %>
-    <span style="color: blue;"><%= task.status%></span>
+    <span style="color: blue;"><%= task.status %></span>
 
     <% elsif task.status == "completed" %>
-    <span style="color: green;"><%= task.status%></span>
+    <span style="color: green;"><%= task.status %></span>
 
     <% end %>
-    <%= button_to "Start", update_task_status_path(task), method: :patch, data: { turbo: true } %>
+    <%= button_to "Start", update_status_path(task), method: :patch, data: { turbo: true } %>
   </div>
 </div>

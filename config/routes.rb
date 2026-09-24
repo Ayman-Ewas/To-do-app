@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   get "/logout", to: "session#destroy"
 
-  patch "tasks/:id/update_status", to: "tasks#update_status", as: "update_task_status"
+  patch "/update_status", to: "tasks#update_status"
 
-  root "pages#home"
+  root "tasks#index"
 end

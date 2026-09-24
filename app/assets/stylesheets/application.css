@@ -26,7 +26,7 @@ strong .task-link:hover,
 
 .add-task-link:hover{
   text-decoration: none !important;
-  border: none !important;
+  border: none !important; 
 }
 
 .task-row {
@@ -65,6 +65,20 @@ strong .task-link:hover,
 }
 
 .Logout-link:hover {
+  color: white !important;
+  text-decoration: none !important;
+  border: none !important;
+  background: none !important;
+}
+
+.signup, .login {
+  color: rgb(206, 204, 204) !important;
+  text-decoration: none !important;
+  border: none !important;
+  font-size: 30px !important;
+}
+
+.signup:hover, .login:hover {
   color: white !important;
   text-decoration: none !important;
   border: none !important;

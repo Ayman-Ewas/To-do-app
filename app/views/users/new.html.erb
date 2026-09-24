@@ -21,17 +21,21 @@
     <%= form.label :password %>
     <%= form.password_field :password_digest, required: true %>
   </div>
-  
-    <!-- password confirmation form -->
-  <div style="margin: 10px 0;">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, required: true %>
-  </div>
 
     <!-- submit button -->
   <%= form.submit "Create Account" %>
 
+  <!-- error message -->
+  <% if @user.errors.any? %>
+  <div style="color: red">
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
 
-<% end %>
+  <% end %>
 
-<p>"Already have an account? <%= link_to "Log In", login_path %></p>
+<p>Already have an account? <%= link_to "Log In", login_path %></p>
