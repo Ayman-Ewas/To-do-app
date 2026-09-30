@@ -6,10 +6,13 @@ class Task < ApplicationRecord
   scope :by_user, ->(user) { where(user: user) }
 
     def toggle_status
-      # Simple status cycling
-      if task.by_user(user).status == "pending"  
-        task.by_user(user).status = "in-progress"
-
+      if status == 'pending'
+        update!(status: 'in-progress')
+      else
+        update!(status: 'Done')
+        
       end
     end
+
+ 
 end

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :tasks
+  resources :tasks do
+    member do
+      patch :update_status
+      patch :finish
+    end
+  end
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -22,8 +27,6 @@ Rails.application.routes.draw do
   post "/login", to: "session#create"
 
   get "/logout", to: "session#destroy"
-
-  patch "/update_status", to: "tasks#update_status"
 
   root "tasks#index"
 end

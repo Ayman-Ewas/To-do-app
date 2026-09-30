@@ -6,9 +6,17 @@ class SessionController < ApplicationController
   end
 
   def create
-    @user = User.find_by(email: session_params[:email])
+    @user = User.find_by!(email: session_params[:email])
 
-    if @user&.authenticate(session_params[:password])
+    password_valid = begin
+      @user.authenticate(session_params[:password])
+    rescue 
+      false
+    end
+    
+  
+
+    if password_valid
       session[:user_id] = @user.id
       
       redirect_to tasks_path, notice: "Logged in successfully."

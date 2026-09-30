@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :require_login
-  before_action :set_task, only: %i[ show edit update destroy update_status]
+  before_action :set_task, only: %i[ show edit update destroy update_status finish]
 
   # GET /tasks or /tasks.json
   def index
@@ -14,7 +14,6 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
-    @current_user = User.find(session[:user_id]) if session[:user_id]
   
   end
 
@@ -24,14 +23,14 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @current_user = User.find(session[:user_id]) if session[:user_id]
-    @task = Task.new(task_params.merge(user_id: @current_user.id))
+    @task = Task.new(task_params)
+    @task.user_id = session[:user_id]
     respond_to do |format|
 
       if @task.save
         format.html { redirect_to tasks_path, notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
-        @current_user.tasks << @task 
+        
         
       else
         format.html { render :new, status: :unprocessable_content }
@@ -70,10 +69,13 @@ class TasksController < ApplicationController
 
   def update_status
     @task.toggle_status
-
-        
+    redirect_to tasks_path
   end
-    
+  
+  def finish
+    @task.finish
+    redirect_to tasks_path, notice: "Task was finished" 
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -83,6 +85,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.expect(task: [ :title ])
+      params.expect(task: [ :title, :user_id ])
     end
 end

@@ -15,11 +15,16 @@
     <%= form.label :email %>
     <%= form.email_field :email, required: true, placeholder: "email@example.com" %>
   </div>
+
+  <div style="margin: 10px 0;">
+    <%= form.label :avatar %>
+    <%= form.file_field :avatar, accept: "image/*" %>
+  </div>
   
     <!-- password form -->
   <div style="margin: 10px 0;">
     <%= form.label :password %>
-    <%= form.password_field :password_digest, required: true %>
+    <%= form.password_field :password, required: true %>
   </div>
 
     <!-- submit button -->

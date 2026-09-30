@@ -38,6 +38,15 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to task_url(@task)
   end
 
+  test "should start a pending task" do
+    @task.update!(status: "pending")
+
+    patch update_status_task_url(@task)
+
+    assert_redirected_to tasks_url
+    assert_equal "in-progress", @task.reload.status
+  end
+
   test "should destroy task" do
     assert_difference("Task.count", -1) do
       delete task_url(@task)
